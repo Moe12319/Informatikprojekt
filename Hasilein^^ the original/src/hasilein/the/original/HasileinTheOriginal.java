@@ -73,7 +73,7 @@ public class HasileinTheOriginal {
                         if (i == 0) {
                             Hasenbewegung_Vertikal = 2;
                         } else {
-                            if (Spielfeld[i + 1][j].equals("H") || Spielfeld[i + 1][j].equals("F")) {
+                            if (Spielfeld[i - 1][j].equals("H") || Spielfeld[i - 1][j].equals("F")) {
                                 Hasenbewegung_Vertikal = 2;
                             } else {
                                 Spielfeld[i - 1][j] = Speicher[i][j];
@@ -104,7 +104,7 @@ public class HasileinTheOriginal {
                         if (j == 24) {
                             Hasenbewegung_Horizontal = 2;
                         } else {
-                            if (Spielfeld[i + 1][j].equals("H") || Spielfeld[i + 1][j].equals("F")) {
+                            if (Spielfeld[i][j + 1].equals("H") || Spielfeld[i][j + 1].equals("F")) {
                                 Hasenbewegung_Horizontal = 2;
                             } else {
                                 Spielfeld[i][j + 1] = Speicher[i][j];
@@ -116,7 +116,7 @@ public class HasileinTheOriginal {
                         if (j == 0) {
                             Hasenbewegung_Horizontal = 2;
                         } else {
-                            if (Spielfeld[i + 1][j].equals("H") || Spielfeld[i + 1][j].equals("F")) {
+                            if (Spielfeld[i][j - 1].equals("H") || Spielfeld[i][j - 1].equals("F")) {
                                 Hasenbewegung_Horizontal = 2;
                             } else {
                                 Spielfeld[i][j - 1] = Speicher[i][j];
@@ -191,7 +191,7 @@ public class HasileinTheOriginal {
                                 Spielfeld[i][j] = Speicher[i][j];
                             }
 
-                            if (Speicher[i][j].equals("F")) {
+                           if (Speicher[i][j].equals("F")) {
                                 int Fuchsbewegung_Vertikal = (int) (Math.random() * 3);
                                 if (Fuchsbewegung_Vertikal == 0) {
                                     if (i == 24) {
@@ -209,7 +209,7 @@ public class HasileinTheOriginal {
                                     if (i == 0) {
                                         Fuchsbewegung_Vertikal = 2;
                                     } else {
-                                        if (Spielfeld[i + 1][j].equals("H") || Spielfeld[i + 1][j].equals("F")) {
+                                        if (Spielfeld[i - 1][j].equals("H") || Spielfeld[i - 1][j].equals("F")) {
                                             Fuchsbewegung_Vertikal = 2;
                                         } else {
                                             Spielfeld[i - 1][j] = Speicher[i][j];
@@ -233,7 +233,6 @@ public class HasileinTheOriginal {
     /**
      * @param args the command line arguments
      */
-    public static String[][] meinArray = new String[25][25];
 
     public static void main(String[] args) {
         Spielfeld_Generator();
@@ -243,7 +242,7 @@ public class HasileinTheOriginal {
         int Rundenzähler = 1;
         Scanner sc = new Scanner(System.in);
         do {
-            System.out.println("Bitte drücke n für eine neue Runde oder ende um das spiel zu beenden");
+            System.out.println("Bitte drücke (n) für eine neue Runde oder (ende) um das spiel zu beenden");
             Neue_Runde = sc.next();
             if (Neue_Runde.equals("n")) {
                 Fuchsbewegung();
