@@ -77,7 +77,7 @@ public static void Hasen_Bewegungvertikal()
             }
             else
             {
-                 if(Spielfeld[i+1][j].equals("H"))
+                 if(Spielfeld[i+1][j].equals("H")||Spielfeld[i+1][j].equals("F"))
                 {
                  Hasenbewegung_Vertikal=2;   
                 }
@@ -96,7 +96,7 @@ public static void Hasen_Bewegungvertikal()
              }
             else
             {
-                 if(Spielfeld[i-1][j].equals("H"))
+               if(Spielfeld[i+1][j].equals("H")||Spielfeld[i+1][j].equals("F"))
                 {
                  Hasenbewegung_Vertikal=2;   
                 }
@@ -140,7 +140,7 @@ public static void Hasen_Bewegunghorizontal()
             }
             else
             {
-                if(Spielfeld[i][j+1].equals("H"))
+                if(Spielfeld[i+1][j].equals("H")||Spielfeld[i+1][j].equals("F"))
                 {
                  Hasenbewegung_Horizontal=2;   
                 }
@@ -159,7 +159,7 @@ public static void Hasen_Bewegunghorizontal()
              }
             else
             {
-                 if(Spielfeld[i][j-1].equals("H"))
+                 if(Spielfeld[i+1][j].equals("H")||Spielfeld[i+1][j].equals("F"))
                 {
                  Hasenbewegung_Horizontal=2;   
                 }
