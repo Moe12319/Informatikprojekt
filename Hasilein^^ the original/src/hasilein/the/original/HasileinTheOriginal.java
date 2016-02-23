@@ -192,9 +192,9 @@ public static void Fuchsbewegung()
  {
      for(int j=0;j<Speicher.length;j++)
      {
-        if(Speicher[i][j].equals("F"));
+        if(Speicher[i][j].equals("F"))
         {
-            if(i!=0&&i!=13&&j!=0&&j!=13)
+            if(i!=0&&i!=24&&j!=0&&j!=24)
             {
             if(Spielfeld[i+1][j].equals("H"))
             {
@@ -208,8 +208,6 @@ public static void Fuchsbewegung()
                 Spielfeld[i][j]=".";
             }
             else
-          
-            
             if(Spielfeld[i][j+1].equals("H"))
             {
                 Spielfeld[i][j+1]=Speicher[i][j];
@@ -245,12 +243,48 @@ public static void Fuchsbewegung()
                 Spielfeld[i+1][j-1]=Speicher[i][j];
                 Spielfeld[i][j]=".";
             }
+            
+            
            else
             {
-                Spielfeld[i+1][j]=Speicher[i][j];
+              int Fuchsbewegung_Horizontal = (int) (Math.random()*3);
+              if(Fuchsbewegung_Horizontal==0)
+             {
+            if(j==24)
+            {
+                Fuchsbewegung_Horizontal=2;
             }
+            else
+                {
+                    Spielfeld[i][j+1]=Speicher[i][j];
+                    Spielfeld[i][j]=".";
+                }
+             }
+            
+        
+        if(Fuchsbewegung_Horizontal==1)
+        {
+            if(j==0)
+            {
+                Fuchsbewegung_Horizontal=2;
+             }
+            else
+            {
+                    Spielfeld[i][j-1]=Speicher[i][j];
+                    Spielfeld[i][j]=".";
+                 
+            }
+        }
+        if(Fuchsbewegung_Horizontal==2)
+        {
+            Spielfeld[i][j]=Speicher[i][j];
+        }
+            }
+            
+            
             }   
         }
+   
         
      }
  }
@@ -259,22 +293,32 @@ public static void Fuchsbewegung()
     /**
      * @param args the command line arguments
      */
-     public  static String[][] meinArray = new String [14][14];
+     public  static String[][] meinArray = new String [25][25];
 
     public static void main(String[] args) {
         Spielfeld_Generator();
         Spielfeldausgabe();
-        
-        
-       // do{
-        if(true)
+        String Neue_Runde;
+        boolean Spiel = true;
+        int Rundenzähler = 1;        
+        Scanner sc = new Scanner(System.in);
+        do{
+          System.out.println("Bitte drücke n für eine neue Runde oder ende um das spiel zu beenden");
+          Neue_Runde = sc.next();
+         if(Neue_Runde.equals("n"))
         {
-            //Fuchsbewegung();
-           // Hasen_Bewegungvertikal();
-           // Hasen_Bewegunghorizontal();
-          //  Spielfeldausgabe();
+             Fuchsbewegung();
+             Hasen_Bewegungvertikal();
+             Hasen_Bewegunghorizontal();
+             Spielfeldausgabe();
+             System.out.println("Runde" + Rundenzähler);
+             Rundenzähler ++;
         }
-        //}while(true);
+         if (Neue_Runde.equals("ende"))
+             {
+                 Spiel = false;
+             }
+         }while(Spiel);
         
     }
       
