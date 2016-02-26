@@ -173,8 +173,12 @@ public class HasileinTheOriginal {
                                 if (j == 24) {
                                     Fuchsbewegung_Horizontal = 2;
                                 } else {
-                                    Spielfeld[i][j + 1] = Speicher[i][j];
-                                    Spielfeld[i][j] = ".";
+                                    if (Spielfeld[i + 1][j].equals("F")) {
+                                        Fuchsbewegung_Horizontal = 2;
+                                    } else {
+                                        Spielfeld[i][j + 1] = Speicher[i][j];
+                                        Spielfeld[i][j] = ".";
+                                    }
                                 }
                             }
 
@@ -182,6 +186,9 @@ public class HasileinTheOriginal {
                                 if (j == 0) {
                                     Fuchsbewegung_Horizontal = 2;
                                 } else {
+                                    if (Spielfeld[i - 1][j].equals("F")) {
+                                        Fuchsbewegung_Horizontal = 2;
+                                    }
                                     Spielfeld[i][j - 1] = Speicher[i][j];
                                     Spielfeld[i][j] = ".";
 
@@ -191,13 +198,13 @@ public class HasileinTheOriginal {
                                 Spielfeld[i][j] = Speicher[i][j];
                             }
 
-                           if (Speicher[i][j].equals("F")) {
+                          //  if (Speicher[i][j].equals("F")) {
                                 int Fuchsbewegung_Vertikal = (int) (Math.random() * 3);
                                 if (Fuchsbewegung_Vertikal == 0) {
                                     if (i == 24) {
                                         Fuchsbewegung_Vertikal = 1;
                                     } else {
-                                        if (Spielfeld[i + 1][j].equals("H") || Spielfeld[i + 1][j].equals("F")) {
+                                        if (Spielfeld[i + 1][j].equals("F")) {
                                             Fuchsbewegung_Vertikal = 2;
                                         } else {
                                             Spielfeld[i + 1][j] = Speicher[i][j];
@@ -209,7 +216,7 @@ public class HasileinTheOriginal {
                                     if (i == 0) {
                                         Fuchsbewegung_Vertikal = 2;
                                     } else {
-                                        if (Spielfeld[i - 1][j].equals("H") || Spielfeld[i - 1][j].equals("F")) {
+                                        if (Spielfeld[i - 1][j].equals("F")) {
                                             Fuchsbewegung_Vertikal = 2;
                                         } else {
                                             Spielfeld[i - 1][j] = Speicher[i][j];
@@ -220,7 +227,7 @@ public class HasileinTheOriginal {
                                 if (Fuchsbewegung_Vertikal == 2) {
                                     Spielfeld[i][j] = Speicher[i][j];
                                 }
-                            }
+                           // }
 
                         }
                     }
@@ -230,6 +237,7 @@ public class HasileinTheOriginal {
         }
 
     }
+
     /**
      * @param args the command line arguments
      */
