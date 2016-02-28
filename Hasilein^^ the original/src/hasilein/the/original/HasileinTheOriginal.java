@@ -459,13 +459,13 @@ public class HasileinTheOriginal {
         for (int i = 0; i < Speicher.length; i++) {
             for (int j = 0; j < Speicher.length; j++) {
                 if (i != 0 && i != 24) {
-                    if (Speicher[i][j] == "  H" && Speicher[i + 1][j] == "  H") {
+                    if (Speicher[i][j] == "  H" && Speicher[i + 1][j] == "  H" && j !=24) {
                         if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i + 1][j + 1] != "!F!" && j != 24) {
                             Spielfeld[i][j + 1] = "  H";
                             Spielfeld[i + 1][j + 1] = "  H";
                         }
                     }
-                    if (Speicher[i][j] == "  H" && Speicher[i - 1][j] == "  H") {
+                    if (Speicher[i][j] == "  H" && Speicher[i - 1][j] == "  H" && j !=24) {
                         if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i - 1][j + 1] != "!F!" && j != 24) {
                             Spielfeld[i][j + 1] = "  H";
                             Spielfeld[i - 1][j + 1] = "  H";
@@ -498,6 +498,8 @@ public class HasileinTheOriginal {
                 Platzhalter();
                 Spielfeldausgabe();
                 Spielerbewegung();
+                Spielfeldausgabe();
+                Platzhalter();
                 Fuchsfressen();
                 Fuchsbewegung_Vertikal();
                 Fuchsbewegung_Horizontal();
