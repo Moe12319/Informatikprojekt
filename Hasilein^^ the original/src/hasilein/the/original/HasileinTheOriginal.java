@@ -128,7 +128,7 @@ public class HasileinTheOriginal {
                         if (j == 0) {
                             Hasenbewegung_Horizontal = 2;
                         } else {
-                            if (Spielfeld[i][j - 1].equals("  H") || Spielfeld[i][j - 1].equals("  F") || Spielfeld.equals("!F!")) {
+                            if (Spielfeld[i][j - 1].equals("  H") || Spielfeld[i][j - 1].equals("  F") || Spielfeld[i][j + 1].equals("!F!")) {
                                 Hasenbewegung_Horizontal = 2;
                             } else {
                                 Spielfeld[i][j - 1] = Speicher[i][j];
@@ -398,8 +398,8 @@ public class HasileinTheOriginal {
                             Spielfeld[i][j + 5] = Speicher[i][j];
                             Spielfeld[i][j] = "  .";
                         }
-                        if (Spielerbewegung.equals("warten")){
-                            Deine_Runde= false;
+                        if (Spielerbewegung.equals("warten")) {
+                            Deine_Runde = false;
                         }
                         Deine_Runde = false;
                     }
