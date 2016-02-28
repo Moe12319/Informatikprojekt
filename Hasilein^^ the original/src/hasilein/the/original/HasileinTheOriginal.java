@@ -33,12 +33,12 @@ public class HasileinTheOriginal {
             }
         }
 
-        int Hasenanzahl = 25;
+        int Hasenanzahl = 15;
 
         for (int i = 0; i < Hasenanzahl; i++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  H";
         }
-        int Fuchsanzahl = 3;
+        int Fuchsanzahl = 5;
 
         for (int f = 0; f < Fuchsanzahl; f++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  F";
@@ -455,12 +455,16 @@ public class HasileinTheOriginal {
             for (int j = 0; j < Speicher.length; j++) {
                 if (i != 0 && i != 24) {
                     if (Speicher[i][j] == "  H" && Speicher[i + 1][j] == "  H") {
-                        Spielfeld[i][j + 1] = "  H";
-                        Spielfeld[i + 1][j + 1] = "  H";
+                        if (Spielfeld[i][j - 1] != "  F" && Spielfeld[i - 1][j - 1] != "!F!" && j!=24 ) {
+                            Spielfeld[i][j + 1] = "  H";
+                            Spielfeld[i + 1][j + 1] = "  H";
+                        }
                     }
                     if (Speicher[i][j] == "  H" && Speicher[i - 1][j] == "  H") {
-                        Spielfeld[i][j + 1] = "  H";
-                        Spielfeld[i - 1][j + 1] = "  H";
+                        if (Spielfeld[i][j - 1] != "  F" && Spielfeld[i - 1][j - 1] != "!F!" && j!=24) {
+                            Spielfeld[i][j + 1] = "  H";
+                            Spielfeld[i - 1][j + 1] = "  H";
+                        }
                     }
                 }
             }
@@ -504,7 +508,7 @@ public class HasileinTheOriginal {
                 System.out.println("Runde" + Rundenzähler);
                 Rundenzähler++;
                 if (Hasenanzahl == 0) {
-                    System.out.println("Herzlichen Glückwunsch!! Du hast nach " + Rundenzähler + " Gewonnen!");
+                    System.out.println("Herzlichen Glückwunsch!! Du hast nach " + Rundenzähler + " Runden Gewonnen!");
                     Spiel = false;
 
                 }
