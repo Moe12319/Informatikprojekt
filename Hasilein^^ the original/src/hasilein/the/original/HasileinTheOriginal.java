@@ -14,6 +14,16 @@ import java.util.Scanner;
 public class HasileinTheOriginal {
 
     static String[][] Spielfeld = new String[25][25];
+    static boolean hat_gefressen = false;
+    static String[][] Speicher_hat_gefressen = new String[25][25];
+
+    public static void Das_Fressen_beginnt() {
+        for (int i = 0; i < Speicher_hat_gefressen.length; i++) {
+            for (int j = 0; j < Speicher_hat_gefressen.length; j++) {
+                Speicher_hat_gefressen[i][j] = "n";
+            }
+        }
+    }
 
     public static void Spielfeld_Generator() {
         for (int i = 0; i < Spielfeld.length; i++) {
@@ -22,12 +32,12 @@ public class HasileinTheOriginal {
             }
         }
 
-        int Hasenanzahl = 15;
+        int Hasenanzahl = 25;
 
         for (int i = 0; i < Hasenanzahl; i++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "H";
         }
-        int Fuchsanzahl = 3;
+        int Fuchsanzahl = 10;
 
         for (int f = 0; f < Fuchsanzahl; f++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "F";
@@ -132,7 +142,8 @@ public class HasileinTheOriginal {
         }
     }
 
-    public static void Fuchsbewegung() {
+    public static void Fuchsfressen() {
+
         String[][] Speicher = new String[25][25];
         for (int i = 0; i < Speicher.length; i++) {
             for (int j = 0; j < Speicher.length; j++) {
@@ -146,102 +157,133 @@ public class HasileinTheOriginal {
                         if (Spielfeld[i + 1][j].equals("H")) {
                             Spielfeld[i + 1][j] = Speicher[i][j];
                             Spielfeld[i][j] = ".";
+                            Speicher_hat_gefressen[i + 1][j] = "j";
                         } else if (Spielfeld[i - 1][j].equals("H")) {
                             Spielfeld[i - 1][j] = Speicher[i][j];
                             Spielfeld[i][j] = ".";
+                            Speicher_hat_gefressen[i - 1][j] = "j";
                         } else if (Spielfeld[i][j + 1].equals("H")) {
                             Spielfeld[i][j + 1] = Speicher[i][j];
                             Spielfeld[i][j] = ".";
+                            Speicher_hat_gefressen[i][j + 1] = "j";
                         } else if (Spielfeld[i][j - 1].equals("H")) {
                             Spielfeld[i][j - 1] = Speicher[i][j];
                             Spielfeld[i][j] = ".";
+                            Speicher_hat_gefressen[i][j - 1] = "j";
                         } else if (Spielfeld[i + 1][j + 1].equals("H")) {
                             Spielfeld[i + 1][j + 1] = Speicher[i][j];
                             Spielfeld[i][j] = ".";
+                            Speicher_hat_gefressen[i + 1][j + 1] = "j";
                         } else if (Spielfeld[i + 1][j - 1].equals("H")) {
                             Spielfeld[i + 1][j - 1] = Speicher[i][j];
                             Spielfeld[i][j] = ".";
+                            Speicher_hat_gefressen[i + 1][j - 1] = "j";
                         } else if (Spielfeld[i - 1][j + 1].equals("H")) {
                             Spielfeld[i - 1][j + 1] = Speicher[i][j];
                             Spielfeld[i][j] = ".";
+                            Speicher_hat_gefressen[i - 1][j + 1] = "j";
                         } else if (Spielfeld[i - 1][j - 1].equals("H")) {
-                            Spielfeld[i + 1][j - 1] = Speicher[i][j];
+                            Spielfeld[i - 1][j - 1] = Speicher[i][j];
                             Spielfeld[i][j] = ".";
-                        } else {
-                            int Fuchsbewegung_Horizontal = (int) (Math.random() * 3);
-                            if (Fuchsbewegung_Horizontal == 0) {
-                                if (j == 24) {
-                                    Fuchsbewegung_Horizontal = 2;
-                                } else {
-                                    if (Spielfeld[i + 1][j].equals("F")) {
-                                        Fuchsbewegung_Horizontal = 2;
-                                    } else {
-                                        Spielfeld[i][j + 1] = Speicher[i][j];
-                                        Spielfeld[i][j] = ".";
-                                    }
-                                }
-                            }
-
-                            if (Fuchsbewegung_Horizontal == 1) {
-                                if (j == 0) {
-                                    Fuchsbewegung_Horizontal = 2;
-                                } else {
-                                    if (Spielfeld[i - 1][j].equals("F")) {
-                                        Fuchsbewegung_Horizontal = 2;
-                                    }
-                                    Spielfeld[i][j - 1] = Speicher[i][j];
-                                    Spielfeld[i][j] = ".";
-
-                                }
-                            }
-                            if (Fuchsbewegung_Horizontal == 2) {
-                                Spielfeld[i][j] = Speicher[i][j];
-                            }
-
-                          //  if (Speicher[i][j].equals("F")) {
-                                int Fuchsbewegung_Vertikal = (int) (Math.random() * 3);
-                                if (Fuchsbewegung_Vertikal == 0) {
-                                    if (i == 24) {
-                                        Fuchsbewegung_Vertikal = 1;
-                                    } else {
-                                        if (Spielfeld[i + 1][j].equals("F")) {
-                                            Fuchsbewegung_Vertikal = 2;
-                                        } else {
-                                            Spielfeld[i + 1][j] = Speicher[i][j];
-                                            Spielfeld[i][j] = ".";
-                                        }
-                                    }
-                                }
-                                if (Fuchsbewegung_Vertikal == 1) {
-                                    if (i == 0) {
-                                        Fuchsbewegung_Vertikal = 2;
-                                    } else {
-                                        if (Spielfeld[i - 1][j].equals("F")) {
-                                            Fuchsbewegung_Vertikal = 2;
-                                        } else {
-                                            Spielfeld[i - 1][j] = Speicher[i][j];
-                                            Spielfeld[i][j] = ".";
-                                        }
-                                    }
-                                }
-                                if (Fuchsbewegung_Vertikal == 2) {
-                                    Spielfeld[i][j] = Speicher[i][j];
-                                }
-                           // }
-
+                            Speicher_hat_gefressen[i - 1][j - 1] = "j";
                         }
                     }
                 }
-
             }
         }
+    }
 
+    public static void Fuchsbewegung_Horizontal() {
+        String[][] Speicher = new String[25][25];
+        for (int i = 0; i < Speicher.length; i++) {
+            for (int j = 0; j < Speicher.length; j++) {
+                Speicher[i][j] = Spielfeld[i][j];
+            }
+        }
+        for (int i = 0; i < Speicher.length; i++) {
+            for (int j = 0; j < Speicher.length; j++) {
+                if (Speicher[i][j].equals("F") && Speicher_hat_gefressen[i][j].equals("n")) {
+                    int Fuchsbewegung_Horizontal = (int) (Math.random() * 3);
+                    if (Fuchsbewegung_Horizontal == 0) {
+                        if (j == 24) {
+                            Fuchsbewegung_Horizontal = 2;
+                        } else {
+                            if (Spielfeld[i][j + 1].equals("F")) {
+                                Fuchsbewegung_Horizontal = 2;
+                            } else {
+                                Spielfeld[i][j + 1] = Speicher[i][j];
+                                Spielfeld[i][j] = ".";
+                            }
+                        }
+                    }
+
+                    if (Fuchsbewegung_Horizontal == 1) {
+                        if (j == 0) {
+                            Fuchsbewegung_Horizontal = 2;
+                        } else {
+                            if (Spielfeld[i][j - 1].equals("F")) {
+                                Fuchsbewegung_Horizontal = 2;
+                            }
+                            Spielfeld[i][j - 1] = Speicher[i][j];
+                            Spielfeld[i][j] = ".";
+
+                        }
+                    }
+                    if (Fuchsbewegung_Horizontal == 2) {
+                        Spielfeld[i][j] = Speicher[i][j];
+                    }
+                }
+            }
+        }
+    }
+
+    public static void Fuchsbewegung_Vertikal() {
+        String[][] Speicher = new String[25][25];
+        for (int i = 0; i < Speicher.length; i++) {
+            for (int j = 0; j < Speicher.length; j++) {
+                Speicher[i][j] = Spielfeld[i][j];
+            }
+        }
+        for (int i = 0; i < Speicher.length; i++) {
+            for (int j = 0; j < Speicher.length; j++) {
+                if (Speicher[i][j].equals("F") && Speicher_hat_gefressen[i][j].equals("n")) {
+                    int Fuchsbewegung_Vertikal = (int) (Math.random() * 3);
+                    if (Fuchsbewegung_Vertikal == 0) {
+                        if (i == 24) {
+                            Fuchsbewegung_Vertikal = 1;
+                        } else {
+                            if (Spielfeld[i + 1][j].equals("F")) {
+                                Fuchsbewegung_Vertikal = 2;
+                            } else {
+                                Spielfeld[i + 1][j] = Speicher[i][j];
+                                Spielfeld[i][j] = ".";
+                            }
+                        }
+                    }
+                    if (Fuchsbewegung_Vertikal == 1) {
+                        if (i == 0) {
+                            Fuchsbewegung_Vertikal = 2;
+                        } else {
+                            if (Spielfeld[i - 1][j].equals("F")) {
+                                Fuchsbewegung_Vertikal = 2;
+                            } else {
+                                Spielfeld[i - 1][j] = Speicher[i][j];
+                                Spielfeld[i][j] = ".";
+                            }
+                        }
+                    }
+                    if (Fuchsbewegung_Vertikal == 2) {
+                        Spielfeld[i][j] = Speicher[i][j];
+                    }
+
+                }
+            }
+        }
     }
 
     /**
      * @param args the command line arguments
      */
-
     public static void main(String[] args) {
         Spielfeld_Generator();
         Spielfeldausgabe();
@@ -253,7 +295,10 @@ public class HasileinTheOriginal {
             System.out.println("Bitte drücke (n) für eine neue Runde oder (ende) um das spiel zu beenden");
             Neue_Runde = sc.next();
             if (Neue_Runde.equals("n")) {
-                Fuchsbewegung();
+                Das_Fressen_beginnt();
+                Fuchsfressen();
+                Fuchsbewegung_Vertikal();
+                Fuchsbewegung_Horizontal();
                 Hasen_Bewegungvertikal();
                 Hasen_Bewegunghorizontal();
                 Spielfeldausgabe();
