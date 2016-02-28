@@ -360,7 +360,8 @@ public class HasileinTheOriginal {
             for (int i = 0; i < Speicher.length; i++) {
                 for (int j = 0; j < Speicher.length; j++) {
                     if (Speicher[i][j].equals("!F!")) {
-                        System.out.println("Steuere deinen Fuchs mit wasd wohin du möchtest!");
+                        System.out.println("Steuere deinen Fuchs mit w a s d wohin du möchtest!"
+                                + "aber achte darauf nicht aus dem pielfeld zu laufen!!");
                         String Spielerbewegung = sc.next();
                         if (Spielerbewegung.equals("w")) {
                             Spielfeld[i - 1][j] = Speicher[i][j];
@@ -409,6 +410,17 @@ public class HasileinTheOriginal {
                 + "");
     }
 
+    public static void Hasenzähler(){
+        int Hasenanzahl = 0;
+        for(int i=0;i<Spielfeld.length;i++){
+            for(int j=0;j<Spielfeld.length;j++){
+                if (Spielfeld[i][j].equals("  H")){
+                    Hasenanzahl++;
+                }
+            }
+        }
+        System.out.println(Hasenanzahl + " Hasen");
+    }
     /**
      * @param args the command line arguments
      */
@@ -438,6 +450,7 @@ public class HasileinTheOriginal {
                 Hasen_Bewegungvertikal();
                 Hasen_Bewegunghorizontal();
                 Spielfeldausgabe();
+                Hasenzähler();
                 System.out.println("Runde" + Rundenzähler);
                 Rundenzähler++;
             }
