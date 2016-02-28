@@ -17,6 +17,7 @@ public class HasileinTheOriginal {
     static String[][] Speicher_hat_gefressen = new String[25][25];
     static int Hasenanzahl = 0;
     static boolean Spiel = true;
+    static boolean Fuchssetzen = true;
 
     public static void Das_Fressen_beginnt() {
         for (int i = 0; i < Speicher_hat_gefressen.length; i++) {
@@ -362,7 +363,7 @@ public class HasileinTheOriginal {
             for (int i = 0; i < Speicher.length; i++) {
                 for (int j = 0; j < Speicher.length; j++) {
                     if (Speicher[i][j].equals("!F!")) {
-                        System.out.println("Steuere deinen Fuchs mit w a s d wohin du möchtest du kannst mit (warten) warten!"
+                        System.out.println("Steuere deinen Fuchs mit w a s d wohin du möchtest du kannst mit (warten) warten mit f kannst du !ein! mal einen fuchs unter dich setzen!"
                                 + "aber achte darauf nicht aus dem Spielfeld zu laufen!!"
                                 + "mit doppeltem buchstaben sprintest du!");
                         String Spielerbewegung = sc.next();
@@ -400,6 +401,10 @@ public class HasileinTheOriginal {
                         }
                         if (Spielerbewegung.equals("warten")) {
                             Deine_Runde = false;
+                        }
+                        if (Spielerbewegung.equals("f") &&Fuchssetzen)  {
+                            Spielfeld[i - 1][j] = "  F";
+                            Fuchssetzen = false;
                         }
                         Deine_Runde = false;
                     }
@@ -455,13 +460,13 @@ public class HasileinTheOriginal {
             for (int j = 0; j < Speicher.length; j++) {
                 if (i != 0 && i != 24) {
                     if (Speicher[i][j] == "  H" && Speicher[i + 1][j] == "  H") {
-                        if (Spielfeld[i][j - 1] != "  F" && Spielfeld[i - 1][j - 1] != "!F!" && j!=24 ) {
+                        if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i + 1][j + 1] != "!F!" && j != 24) {
                             Spielfeld[i][j + 1] = "  H";
                             Spielfeld[i + 1][j + 1] = "  H";
                         }
                     }
                     if (Speicher[i][j] == "  H" && Speicher[i - 1][j] == "  H") {
-                        if (Spielfeld[i][j - 1] != "  F" && Spielfeld[i - 1][j - 1] != "!F!" && j!=24) {
+                        if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i - 1][j + 1] != "!F!" && j != 24) {
                             Spielfeld[i][j + 1] = "  H";
                             Spielfeld[i - 1][j + 1] = "  H";
                         }
