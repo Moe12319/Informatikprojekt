@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Lea
+ * @author Moritz
  */
 public class HasileinTheOriginal {
 
@@ -363,8 +363,8 @@ public class HasileinTheOriginal {
                 for (int j = 0; j < Speicher.length; j++) {
                     if (Speicher[i][j].equals("!F!")) {
                         System.out.println("Steuere deinen Fuchs mit w a s d wohin du möchtest du kannst mit (warten) warten!"
-                                + "aber achte darauf nicht aus dem pielfeld zu laufen!!"
-                                + "mit doppeltem buchstabe sprintet du!");
+                                + "aber achte darauf nicht aus dem Spielfeld zu laufen!!"
+                                + "mit doppeltem buchstaben sprintest du!");
                         String Spielerbewegung = sc.next();
                         if (Spielerbewegung.equals("w")) {
                             Spielfeld[i - 1][j] = Speicher[i][j];
