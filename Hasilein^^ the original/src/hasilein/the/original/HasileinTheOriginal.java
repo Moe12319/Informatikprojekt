@@ -12,10 +12,11 @@ import java.util.Scanner;
  * @author Lea
  */
 public class HasileinTheOriginal {
-    
+
     static String[][] Spielfeld = new String[25][25];
     static String[][] Speicher_hat_gefressen = new String[25][25];
-    
+    static int Hasenanzahl = 0;
+
     public static void Das_Fressen_beginnt() {
         for (int i = 0; i < Speicher_hat_gefressen.length; i++) {
             for (int j = 0; j < Speicher_hat_gefressen.length; j++) {
@@ -23,39 +24,39 @@ public class HasileinTheOriginal {
             }
         }
     }
-    
+
     public static void Spielfeld_Generator() {
         for (int i = 0; i < Spielfeld.length; i++) {
             for (int j = 0; j < Spielfeld.length; j++) {
                 Spielfeld[i][j] = "  .";
             }
         }
-        
-        int Hasenanzahl = 15;
-        
+
+        int Hasenanzahl = 1;
+
         for (int i = 0; i < Hasenanzahl; i++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  H";
         }
         int Fuchsanzahl = 3;
-        
+
         for (int f = 0; f < Fuchsanzahl; f++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  F";
         }
         Spielfeld[12][12] = "!F!";
     }
-    
+
     public static void Spielfeldausgabe() {
         for (int i = 0; i < Spielfeld.length; i++) {
-            
+
             for (int j = 0; j < Spielfeld.length; j++) {
                 System.out.print(Spielfeld[i][j]);
-                
+
             }
             System.out.println();
-            
+
         }
     }
-    
+
     public static void Hasen_Bewegungvertikal() {
         String[][] Speicher = new String[25][25];
         for (int i = 0; i < Speicher.length; i++) {
@@ -98,7 +99,7 @@ public class HasileinTheOriginal {
             }
         }
     }
-    
+
     public static void Hasen_Bewegunghorizontal() {
         String[][] Speicher = new String[25][25];
         for (int i = 0; i < Speicher.length; i++) {
@@ -141,9 +142,9 @@ public class HasileinTheOriginal {
             }
         }
     }
-    
+
     public static void Fuchsfressen() {
-        
+
         String[][] Speicher = new String[25][25];
         for (int i = 0; i < Speicher.length; i++) {
             for (int j = 0; j < Speicher.length; j++) {
@@ -258,7 +259,7 @@ public class HasileinTheOriginal {
             }
         }
     }
-    
+
     public static void Fuchsbewegung_Horizontal() {
         String[][] Speicher = new String[25][25];
         for (int i = 0; i < Speicher.length; i++) {
@@ -282,7 +283,7 @@ public class HasileinTheOriginal {
                             }
                         }
                     }
-                    
+
                     if (Fuchsbewegung_Horizontal == 1) {
                         if (j == 0) {
                             Fuchsbewegung_Horizontal = 2;
@@ -292,7 +293,7 @@ public class HasileinTheOriginal {
                             }
                             Spielfeld[i][j - 1] = Speicher[i][j];
                             Spielfeld[i][j] = "  .";
-                            
+
                         }
                     }
                     if (Fuchsbewegung_Horizontal == 2) {
@@ -302,7 +303,7 @@ public class HasileinTheOriginal {
             }
         }
     }
-    
+
     public static void Fuchsbewegung_Vertikal() {
         String[][] Speicher = new String[25][25];
         for (int i = 0; i < Speicher.length; i++) {
@@ -341,12 +342,12 @@ public class HasileinTheOriginal {
                     if (Fuchsbewegung_Vertikal == 2) {
                         Spielfeld[i][j] = Speicher[i][j];
                     }
-                    
+
                 }
             }
         }
     }
-    
+
     public static void Spielerbewegung() {
         boolean Deine_Runde = true;
         String[][] Speicher = new String[25][25];
@@ -361,7 +362,8 @@ public class HasileinTheOriginal {
                 for (int j = 0; j < Speicher.length; j++) {
                     if (Speicher[i][j].equals("!F!")) {
                         System.out.println("Steuere deinen Fuchs mit w a s d wohin du möchtest!"
-                                + "aber achte darauf nicht aus dem pielfeld zu laufen!!");
+                                + "aber achte darauf nicht aus dem pielfeld zu laufen!!"
+                                + "mit doppeltem buchstabe sprintet du!");
                         String Spielerbewegung = sc.next();
                         if (Spielerbewegung.equals("w")) {
                             Spielfeld[i - 1][j] = Speicher[i][j];
@@ -379,13 +381,29 @@ public class HasileinTheOriginal {
                             Spielfeld[i][j + 1] = Speicher[i][j];
                             Spielfeld[i][j] = "  .";
                         }
+                        if (Spielerbewegung.equals("ww")) {
+                            Spielfeld[i - 5][j] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                        }
+                        if (Spielerbewegung.equals("aa")) {
+                            Spielfeld[i][j - 5] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                        }
+                        if (Spielerbewegung.equals("ss")) {
+                            Spielfeld[i + 5][j] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                        }
+                        if (Spielerbewegung.equals("dd")) {
+                            Spielfeld[i][j + 5] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                        }
                         Deine_Runde = false;
                     }
                 }
             }
         } while (Deine_Runde);
     }
-    
+
     public static void Platzhalter() {
         System.out.println(""
                 + ""
@@ -410,17 +428,22 @@ public class HasileinTheOriginal {
                 + "");
     }
 
-    public static void Hasenzähler(){
-        int Hasenanzahl = 0;
-        for(int i=0;i<Spielfeld.length;i++){
-            for(int j=0;j<Spielfeld.length;j++){
-                if (Spielfeld[i][j].equals("  H")){
+    public static void Hasenzähler() {
+
+        for (int i = 0; i < Spielfeld.length; i++) {
+            for (int j = 0; j < Spielfeld.length; j++) {
+                if (Spielfeld[i][j].equals("  H")) {
                     Hasenanzahl++;
                 }
             }
         }
         System.out.println(Hasenanzahl + " Hasen");
     }
+
+    public static void Hasenvermehrung() {
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -453,12 +476,17 @@ public class HasileinTheOriginal {
                 Hasenzähler();
                 System.out.println("Runde" + Rundenzähler);
                 Rundenzähler++;
+                if (Hasenanzahl == 0) {
+                    System.out.println("Herzlichen Glückwunsch!! Du hast nach " + Rundenzähler + " Gewonnen!");
+                    Spiel = false;
+
+                }
             }
             if (Neue_Runde.equals("ende")) {
                 Spiel = false;
             }
         } while (Spiel);
-        
+
     }
-    
+
 }
