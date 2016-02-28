@@ -33,7 +33,7 @@ public class HasileinTheOriginal {
             }
         }
 
-        int Hasenanzahl = 15;
+        int Hasenanzahl = 25;
 
         for (int i = 0; i < Hasenanzahl; i++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  H";
@@ -128,7 +128,7 @@ public class HasileinTheOriginal {
                         if (j == 0) {
                             Hasenbewegung_Horizontal = 2;
                         } else {
-                            if (Spielfeld[i][j - 1].equals("  H") || Spielfeld[i][j - 1].equals("  F") || Spielfeld[i][j + 1].equals("!F!")) {
+                            if (Spielfeld[i][j - 1].equals("  H") || Spielfeld[i][j - 1].equals("  F") || Spielfeld[i][j - 1].equals("!F!")) {
                                 Hasenbewegung_Horizontal = 2;
                             } else {
                                 Spielfeld[i][j - 1] = Speicher[i][j];
@@ -433,7 +433,7 @@ public class HasileinTheOriginal {
     }
 
     public static void Hasenzähler() {
-
+        Hasenanzahl = 0;
         for (int i = 0; i < Spielfeld.length; i++) {
             for (int j = 0; j < Spielfeld.length; j++) {
                 if (Spielfeld[i][j].equals("  H")) {
@@ -445,7 +445,26 @@ public class HasileinTheOriginal {
     }
 
     public static void Hasenvermehrung() {
-
+        String[][] Speicher = new String[25][25];
+        for (int i = 0; i < Speicher.length; i++) {
+            for (int j = 0; j < Speicher.length; j++) {
+                Speicher[i][j] = Spielfeld[i][j];
+            }
+        }
+        for (int i = 0; i < Speicher.length; i++) {
+            for (int j = 0; j < Speicher.length; j++) {
+                if (i != 0 && i != 24) {
+                    if (Speicher[i][j] == "  H" && Speicher[i + 1][j] == "  H") {
+                        Spielfeld[i][j + 1] = "  H";
+                        Spielfeld[i + 1][j + 1] = "  H";
+                    }
+                    if (Speicher[i][j] == "  H" && Speicher[i - 1][j] == "  H") {
+                        Spielfeld[i][j + 1] = "  H";
+                        Spielfeld[i - 1][j + 1] = "  H";
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -477,6 +496,7 @@ public class HasileinTheOriginal {
                 Fuchsfressen();
                 Fuchsbewegung_Vertikal();
                 Fuchsbewegung_Horizontal();
+                Hasenvermehrung();
                 Hasen_Bewegungvertikal();
                 Hasen_Bewegunghorizontal();
                 Spielfeldausgabe();
