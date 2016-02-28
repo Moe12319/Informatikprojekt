@@ -12,10 +12,10 @@ import java.util.Scanner;
  * @author Lea
  */
 public class HasileinTheOriginal {
-
+    
     static String[][] Spielfeld = new String[25][25];
     static String[][] Speicher_hat_gefressen = new String[25][25];
-
+    
     public static void Das_Fressen_beginnt() {
         for (int i = 0; i < Speicher_hat_gefressen.length; i++) {
             for (int j = 0; j < Speicher_hat_gefressen.length; j++) {
@@ -23,39 +23,39 @@ public class HasileinTheOriginal {
             }
         }
     }
-
+    
     public static void Spielfeld_Generator() {
         for (int i = 0; i < Spielfeld.length; i++) {
             for (int j = 0; j < Spielfeld.length; j++) {
                 Spielfeld[i][j] = "  .";
             }
         }
-
+        
         int Hasenanzahl = 15;
-
+        
         for (int i = 0; i < Hasenanzahl; i++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  H";
         }
         int Fuchsanzahl = 3;
-
+        
         for (int f = 0; f < Fuchsanzahl; f++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  F";
         }
         Spielfeld[12][12] = "!F!";
     }
-
+    
     public static void Spielfeldausgabe() {
         for (int i = 0; i < Spielfeld.length; i++) {
-
+            
             for (int j = 0; j < Spielfeld.length; j++) {
                 System.out.print(Spielfeld[i][j]);
-
+                
             }
             System.out.println();
-
+            
         }
     }
-
+    
     public static void Hasen_Bewegungvertikal() {
         String[][] Speicher = new String[25][25];
         for (int i = 0; i < Speicher.length; i++) {
@@ -71,7 +71,7 @@ public class HasileinTheOriginal {
                         if (i == 24) {
                             Hasenbewegung_Vertikal = 1;
                         } else {
-                            if (Spielfeld[i + 1][j].equals("  H") || Spielfeld[i + 1][j].equals("  F")) {
+                            if (Spielfeld[i + 1][j].equals("  H") || Spielfeld[i + 1][j].equals("  F") || Spielfeld[i + 1][j].equals("!F!")) {
                                 Hasenbewegung_Vertikal = 2;
                             } else {
                                 Spielfeld[i + 1][j] = Speicher[i][j];
@@ -83,7 +83,7 @@ public class HasileinTheOriginal {
                         if (i == 0) {
                             Hasenbewegung_Vertikal = 2;
                         } else {
-                            if (Spielfeld[i - 1][j].equals("  H") || Spielfeld[i - 1][j].equals("  F")) {
+                            if (Spielfeld[i - 1][j].equals("  H") || Spielfeld[i - 1][j].equals("  F") || Spielfeld[i - 1][j].equals("!F!")) {
                                 Hasenbewegung_Vertikal = 2;
                             } else {
                                 Spielfeld[i - 1][j] = Speicher[i][j];
@@ -98,7 +98,7 @@ public class HasileinTheOriginal {
             }
         }
     }
-
+    
     public static void Hasen_Bewegunghorizontal() {
         String[][] Speicher = new String[25][25];
         for (int i = 0; i < Speicher.length; i++) {
@@ -114,7 +114,7 @@ public class HasileinTheOriginal {
                         if (j == 24) {
                             Hasenbewegung_Horizontal = 2;
                         } else {
-                            if (Spielfeld[i][j + 1].equals("  H") || Spielfeld[i][j + 1].equals("  F")) {
+                            if (Spielfeld[i][j + 1].equals("  H") || Spielfeld[i][j + 1].equals("  F") || Spielfeld[i][j + 1].equals("!F!")) {
                                 Hasenbewegung_Horizontal = 2;
                             } else {
                                 Spielfeld[i][j + 1] = Speicher[i][j];
@@ -126,7 +126,7 @@ public class HasileinTheOriginal {
                         if (j == 0) {
                             Hasenbewegung_Horizontal = 2;
                         } else {
-                            if (Spielfeld[i][j - 1].equals("  H") || Spielfeld[i][j - 1].equals("  F")) {
+                            if (Spielfeld[i][j - 1].equals("  H") || Spielfeld[i][j - 1].equals("  F") || Spielfeld.equals("!F!")) {
                                 Hasenbewegung_Horizontal = 2;
                             } else {
                                 Spielfeld[i][j - 1] = Speicher[i][j];
@@ -141,9 +141,9 @@ public class HasileinTheOriginal {
             }
         }
     }
-
+    
     public static void Fuchsfressen() {
-
+        
         String[][] Speicher = new String[25][25];
         for (int i = 0; i < Speicher.length; i++) {
             for (int j = 0; j < Speicher.length; j++) {
@@ -258,7 +258,7 @@ public class HasileinTheOriginal {
             }
         }
     }
-
+    
     public static void Fuchsbewegung_Horizontal() {
         String[][] Speicher = new String[25][25];
         for (int i = 0; i < Speicher.length; i++) {
@@ -274,7 +274,7 @@ public class HasileinTheOriginal {
                         if (j == 24) {
                             Fuchsbewegung_Horizontal = 2;
                         } else {
-                            if (Spielfeld[i][j + 1].equals("  F")) {
+                            if (Spielfeld[i][j + 1].equals("  F") || Spielfeld[i][j + 1].equals("!F!")) {
                                 Fuchsbewegung_Horizontal = 2;
                             } else {
                                 Spielfeld[i][j + 1] = Speicher[i][j];
@@ -282,17 +282,17 @@ public class HasileinTheOriginal {
                             }
                         }
                     }
-
+                    
                     if (Fuchsbewegung_Horizontal == 1) {
                         if (j == 0) {
                             Fuchsbewegung_Horizontal = 2;
                         } else {
-                            if (Spielfeld[i][j - 1].equals("  F")) {
+                            if (Spielfeld[i][j - 1].equals("  F") || Spielfeld[i][j - 1].equals("!F!")) {
                                 Fuchsbewegung_Horizontal = 2;
                             }
                             Spielfeld[i][j - 1] = Speicher[i][j];
                             Spielfeld[i][j] = "  .";
-
+                            
                         }
                     }
                     if (Fuchsbewegung_Horizontal == 2) {
@@ -302,7 +302,7 @@ public class HasileinTheOriginal {
             }
         }
     }
-
+    
     public static void Fuchsbewegung_Vertikal() {
         String[][] Speicher = new String[25][25];
         for (int i = 0; i < Speicher.length; i++) {
@@ -318,7 +318,7 @@ public class HasileinTheOriginal {
                         if (i == 24) {
                             Fuchsbewegung_Vertikal = 1;
                         } else {
-                            if (Spielfeld[i + 1][j].equals("  F")) {
+                            if (Spielfeld[i + 1][j].equals("  F") || Spielfeld[i + 1][j].equals("!F!")) {
                                 Fuchsbewegung_Vertikal = 2;
                             } else {
                                 Spielfeld[i + 1][j] = Speicher[i][j];
@@ -330,7 +330,7 @@ public class HasileinTheOriginal {
                         if (i == 0) {
                             Fuchsbewegung_Vertikal = 2;
                         } else {
-                            if (Spielfeld[i - 1][j].equals("  F")) {
+                            if (Spielfeld[i - 1][j].equals("  F") || Speicher[i - 1][j].equals("!F!")) {
                                 Fuchsbewegung_Vertikal = 2;
                             } else {
                                 Spielfeld[i - 1][j] = Speicher[i][j];
@@ -341,12 +341,12 @@ public class HasileinTheOriginal {
                     if (Fuchsbewegung_Vertikal == 2) {
                         Spielfeld[i][j] = Speicher[i][j];
                     }
-
+                    
                 }
             }
         }
     }
-
+    
     public static void Spielerbewegung() {
         boolean Deine_Runde = true;
         String[][] Speicher = new String[25][25];
@@ -384,7 +384,7 @@ public class HasileinTheOriginal {
             }
         } while (Deine_Runde);
     }
-
+    
     public static void Platzhalter() {
         System.out.println(""
                 + ""
@@ -445,7 +445,7 @@ public class HasileinTheOriginal {
                 Spiel = false;
             }
         } while (Spiel);
-
+        
     }
-
+    
 }
