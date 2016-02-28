@@ -16,6 +16,7 @@ public class HasileinTheOriginal {
     static String[][] Spielfeld = new String[25][25];
     static String[][] Speicher_hat_gefressen = new String[25][25];
     static int Hasenanzahl = 0;
+    static boolean Spiel = true;
 
     public static void Das_Fressen_beginnt() {
         for (int i = 0; i < Speicher_hat_gefressen.length; i++) {
@@ -32,7 +33,7 @@ public class HasileinTheOriginal {
             }
         }
 
-        int Hasenanzahl = 1;
+        int Hasenanzahl = 15;
 
         for (int i = 0; i < Hasenanzahl; i++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  H";
@@ -361,7 +362,7 @@ public class HasileinTheOriginal {
             for (int i = 0; i < Speicher.length; i++) {
                 for (int j = 0; j < Speicher.length; j++) {
                     if (Speicher[i][j].equals("!F!")) {
-                        System.out.println("Steuere deinen Fuchs mit w a s d wohin du möchtest!"
+                        System.out.println("Steuere deinen Fuchs mit w a s d wohin du möchtest du kannst mit (warten) warten!"
                                 + "aber achte darauf nicht aus dem pielfeld zu laufen!!"
                                 + "mit doppeltem buchstabe sprintet du!");
                         String Spielerbewegung = sc.next();
@@ -396,6 +397,9 @@ public class HasileinTheOriginal {
                         if (Spielerbewegung.equals("dd")) {
                             Spielfeld[i][j + 5] = Speicher[i][j];
                             Spielfeld[i][j] = "  .";
+                        }
+                        if (Spielerbewegung.equals("warten")){
+                            Deine_Runde= false;
                         }
                         Deine_Runde = false;
                     }
@@ -450,8 +454,7 @@ public class HasileinTheOriginal {
     public static void main(String[] args) {
         Spielfeld_Generator();
         String Neue_Runde;
-        boolean Spiel = true;
-        int Rundenzähler = 1;
+        int Rundenzähler = 0;
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println("Bitte drücke (n) für eine neue Runde oder (ende) um das spiel zu beenden");
@@ -467,6 +470,10 @@ public class HasileinTheOriginal {
                 Platzhalter();
                 Spielfeldausgabe();
                 Spielerbewegung();
+                Fuchsfressen();
+                Fuchsbewegung_Vertikal();
+                Fuchsbewegung_Horizontal();
+                Das_Fressen_beginnt();
                 Fuchsfressen();
                 Fuchsbewegung_Vertikal();
                 Fuchsbewegung_Horizontal();
