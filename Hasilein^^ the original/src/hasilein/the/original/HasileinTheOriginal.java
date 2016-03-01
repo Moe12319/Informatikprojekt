@@ -5,6 +5,8 @@
  */
 package hasilein.the.original;
 
+import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,6 +20,8 @@ public class HasileinTheOriginal {
     static int Hasenanzahl = 0;
     static boolean Spiel = true;
     static boolean Fuchssetzen = true;
+    static int Hunger = 0;
+    static String[][] Hunger_Speicher = new String[25][25];
 
     public static void Das_Fressen_beginnt() {
         for (int i = 0; i < Speicher_hat_gefressen.length; i++) {
@@ -36,14 +40,20 @@ public class HasileinTheOriginal {
 
         int Hasenanzahl = 15;
 
-        for (int i = 0; i < Hasenanzahl; i++) {
+        for (int h = 0; h < Hasenanzahl; h++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  H";
         }
         int Fuchsanzahl = 5;
 
-        for (int f = 0; f < Fuchsanzahl; f++) {
-            Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  F";
-        }
+        int[][] Fuchskoordinaten = new int[Fuchsanzahl][2];
+        for (int i = 0; i < Fuchsanzahl; i++) {
+                int Fuchs = 1;
+                int Fuchsi = (int) (Math.random() * 25);
+                int Fuchsj = (int) (Math.random() * 25);
+                Spielfeld[Fuchsi][Fuchsj] = "  F";
+                Fuchs++;
+            }
+        
         Spielfeld[12][12] = "!F!";
     }
 
@@ -476,10 +486,51 @@ public class HasileinTheOriginal {
         }
     }
 
+    public static void Hunger() {
+        for (int i = 0; i < Hunger_Speicher.length; i++) {
+            for (int j = 0; j < Hunger_Speicher.length; j++) {
+                if (Spielfeld[i][j] == "  F" && Speicher_hat_gefressen[i][j] == "n") {
+                    Hunger_Speicher[i][j] = "j";
+                } else {
+                    Hunger_Speicher[i][j] = ".";
+                }
+            }
+        }
+
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        /*ArrayList<Point> arl = new ArrayList<Point>();
+       
+         int x1=4;
+         int y1=5;
+         arl.add(new Point(x1,y1));
+         arl.add(new Point(1,3));
+         arl.add(new Point(2,3));
+
+         for(int i=0; i<arl.size(); i++)
+         {
+         System.out.println(arl.get(i).x +" "+arl.get(i).y );
+            
+            
+         }
+         for(int i=0; i<arl.size(); i++)
+         {
+            
+         if(arl.get(i).x == 4)
+         arl.remove(i);
+         }
+         System.out.println("Test");
+         for(int i=0; i<arl.size(); i++)
+         {
+
+         System.out.println(arl.get(i).x +" "+arl.get(i).y );
+            
+           
+         }*/
         Spielfeld_Generator();
         String Neue_Runde;
         int Rundenzähler = 0;
