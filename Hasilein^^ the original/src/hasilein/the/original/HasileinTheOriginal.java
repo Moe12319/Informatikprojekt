@@ -22,6 +22,8 @@ public class HasileinTheOriginal {
     static boolean Fuchssetzen = true;
     static int Hunger = 0;
     static String[][] Hunger_Speicher = new String[25][25];
+    static int Fuchsanzahl = 5;
+    static int[][] Fuchskoordinaten = new int[Fuchsanzahl][2];
 
     public static void Das_Fressen_beginnt() {
         for (int i = 0; i < Speicher_hat_gefressen.length; i++) {
@@ -43,17 +45,15 @@ public class HasileinTheOriginal {
         for (int h = 0; h < Hasenanzahl; h++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  H";
         }
-        int Fuchsanzahl = 5;
 
-        int[][] Fuchskoordinaten = new int[Fuchsanzahl][2];
         for (int i = 0; i < Fuchsanzahl; i++) {
-                int Fuchs = 1;
-                int Fuchsi = (int) (Math.random() * 25);
-                int Fuchsj = (int) (Math.random() * 25);
-                Spielfeld[Fuchsi][Fuchsj] = "  F";
-                Fuchs++;
-            }
-        
+            int Fuchs = 1;
+            int Fuchsi = (int) (Math.random() * 25);
+            int Fuchsj = (int) (Math.random() * 25);
+            Spielfeld[Fuchsi][Fuchsj] = "  F";
+            Fuchs++;
+        }
+
         Spielfeld[12][12] = "!F!";
     }
 
@@ -487,14 +487,9 @@ public class HasileinTheOriginal {
     }
 
     public static void Hunger() {
-        for (int i = 0; i < Hunger_Speicher.length; i++) {
-            for (int j = 0; j < Hunger_Speicher.length; j++) {
-                if (Spielfeld[i][j] == "  F" && Speicher_hat_gefressen[i][j] == "n") {
-                    Hunger_Speicher[i][j] = "j";
-                } else {
-                    Hunger_Speicher[i][j] = ".";
-                }
-            }
+        for (int i = 0; i < Fuchskoordinaten.length; i++) {
+             
+
         }
 
     }
