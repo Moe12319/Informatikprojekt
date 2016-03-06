@@ -27,22 +27,27 @@ public class HasileinTheOriginal {
     static String[][] Hungerspeicher = new String[25][25];
 
     public static void Der_Hunger_Kommt() {
-        for (int i = 0; i < Hungerspeicher.length; i++) {
-            for (int j = 0; j < Hungerspeicher.length; j++) {
-                Hungerspeicher[i][j] = "h";
-            }
-        }
-    }
-    
-    public static void Den_Hungertot_sterben(){
-        for(int i=0;i<Spielfeld.length;i++){
-            for(int j=0;j<Spielfeld.length;j++){
-                if(Spielfeld[i][j] == "  F" && Hungerspeicher[i][j]== "h"){
-                    Spielfeld[i][j] = "  .";
+        if (Hunger == 0) {
+            for (int i = 0; i < Hungerspeicher.length; i++) {
+                for (int j = 0; j < Hungerspeicher.length; j++) {
+                    Hungerspeicher[i][j] = "h";
                 }
             }
         }
-    } 
+    }
+
+    public static void Den_Hungertot_sterben() {
+        if (Hunger == 5) {
+            for (int i = 0; i < Spielfeld.length; i++) {
+                for (int j = 0; j < Spielfeld.length; j++) {
+                    if (Spielfeld[i][j] == "  F" && Hungerspeicher[i][j] == "h") {
+                        Spielfeld[i][j] = "  .";
+                    }
+                }
+            }
+            Hunger = 0;
+        }
+    }
 
     public static void Das_Fressen_beginnt() {
         for (int i = 0; i < Speicher_hat_gefressen.length; i++) {
@@ -348,10 +353,10 @@ public class HasileinTheOriginal {
                             } else {
                                 Spielfeld[i][j - 1] = Speicher[i][j];
                                 Spielfeld[i][j] = "  .";
-                                 if (Hungerspeicher[i][j] == "s") {
+                                if (Hungerspeicher[i][j] == "s") {
                                     Hungerspeicher[i][j - 1] = "s";
                                     Hungerspeicher[i][j] = "h";
-                                 }
+                                }
                             }
 
                         }
@@ -384,10 +389,10 @@ public class HasileinTheOriginal {
                             } else {
                                 Spielfeld[i + 1][j] = Speicher[i][j];
                                 Spielfeld[i][j] = "  .";
-                                  if (Hungerspeicher[i][j] == "s") {
+                                if (Hungerspeicher[i][j] == "s") {
                                     Hungerspeicher[i + 1][j] = "s";
                                     Hungerspeicher[i][j] = "h";
-                                 }
+                                }
                             }
                         }
                     }
@@ -400,10 +405,10 @@ public class HasileinTheOriginal {
                             } else {
                                 Spielfeld[i - 1][j] = Speicher[i][j];
                                 Spielfeld[i][j] = "  .";
-                                 if (Hungerspeicher[i][j] == "s") {
+                                if (Hungerspeicher[i][j] == "s") {
                                     Hungerspeicher[i - 1][j] = "s";
                                     Hungerspeicher[i][j] = "h";
-                                 }
+                                }
                             }
                         }
                     }
@@ -526,13 +531,13 @@ public class HasileinTheOriginal {
             for (int j = 0; j < Speicher.length; j++) {
                 if (i != 0 && i != 24) {
                     if (Speicher[i][j] == "  H" && Speicher[i + 1][j] == "  H" && j != 24) {
-                        if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i + 1][j + 1] != "!F!" && j != 24) {
+                        if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i + 1][j + 1] != "  F" && Spielfeld[i][j + 1] != "!F!" && Spielfeld[i + 1][j + 1] != "!F!" && j != 24) {
                             Spielfeld[i][j + 1] = "  H";
                             Spielfeld[i + 1][j + 1] = "  H";
                         }
                     }
                     if (Speicher[i][j] == "  H" && Speicher[i - 1][j] == "  H" && j != 24) {
-                        if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i - 1][j + 1] != "!F!" && j != 24) {
+                        if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i - 1][j + 1] != "  F" && Spielfeld[i][j + 1] != "!F!" && Spielfeld[i - 1][j + 1] != "!F!" && j != 24) {
                             Spielfeld[i][j + 1] = "  H";
                             Spielfeld[i - 1][j + 1] = "  H";
                         }
@@ -594,6 +599,7 @@ public class HasileinTheOriginal {
             if (Neue_Runde.equals("n")) {
                 Das_Fressen_beginnt();
                 Der_Hunger_Kommt();
+                Hunger++;
                 Platzhalter();
                 Spielfeldausgabe();
                 Spielerbewegung();
@@ -605,18 +611,6 @@ public class HasileinTheOriginal {
                 Spielerbewegung();
                 Spielfeldausgabe();
                 Platzhalter();
-                Fuchsfressen();
-                Fuchsbewegung_Vertikal();
-                Fuchsbewegung_Horizontal();
-                Das_Fressen_beginnt();
-                Fuchsfressen();
-                Fuchsbewegung_Vertikal();
-                Fuchsbewegung_Horizontal();
-                Das_Fressen_beginnt();
-                Fuchsfressen();
-                Fuchsbewegung_Vertikal();
-                Fuchsbewegung_Horizontal();
-                Das_Fressen_beginnt();
                 Fuchsfressen();
                 Fuchsbewegung_Vertikal();
                 Fuchsbewegung_Horizontal();
