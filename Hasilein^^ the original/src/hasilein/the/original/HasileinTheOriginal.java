@@ -38,7 +38,7 @@ public class HasileinTheOriginal {
         for (int i = 0; i < Hasenanzahl; i++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  H";
         }
-        int Fuchsanzahl = 3;
+        int Fuchsanzahl = 5;
 
         for (int f = 0; f < Fuchsanzahl; f++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  F";
@@ -72,25 +72,21 @@ public class HasileinTheOriginal {
                     if (Hasenbewegung_Vertikal == 0) {
                         if (i == 24) {
                             Hasenbewegung_Vertikal = 1;
+                        } else if (Spielfeld[i + 1][j].equals("  H") || Spielfeld[i + 1][j].equals("  F") || Spielfeld[i + 1][j].equals("!F!")) {
+                            Hasenbewegung_Vertikal = 2;
                         } else {
-                            if (Spielfeld[i + 1][j].equals("  H") || Spielfeld[i + 1][j].equals("  F") || Spielfeld[i + 1][j].equals("!F!")) {
-                                Hasenbewegung_Vertikal = 2;
-                            } else {
-                                Spielfeld[i + 1][j] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                            }
+                            Spielfeld[i + 1][j] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
                         }
                     }
                     if (Hasenbewegung_Vertikal == 1) {
                         if (i == 0) {
                             Hasenbewegung_Vertikal = 2;
+                        } else if (Spielfeld[i - 1][j].equals("  H") || Spielfeld[i - 1][j].equals("  F") || Spielfeld[i - 1][j].equals("!F!")) {
+                            Hasenbewegung_Vertikal = 2;
                         } else {
-                            if (Spielfeld[i - 1][j].equals("  H") || Spielfeld[i - 1][j].equals("  F") || Spielfeld[i - 1][j].equals("!F!")) {
-                                Hasenbewegung_Vertikal = 2;
-                            } else {
-                                Spielfeld[i - 1][j] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                            }
+                            Spielfeld[i - 1][j] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
                         }
                     }
                     if (Hasenbewegung_Vertikal == 2) {
@@ -115,25 +111,21 @@ public class HasileinTheOriginal {
                     if (Hasenbewegung_Horizontal == 0) {
                         if (j == 24) {
                             Hasenbewegung_Horizontal = 2;
+                        } else if (Spielfeld[i][j + 1].equals("  H") || Spielfeld[i][j + 1].equals("  F") || Spielfeld[i][j + 1].equals("!F!")) {
+                            Hasenbewegung_Horizontal = 2;
                         } else {
-                            if (Spielfeld[i][j + 1].equals("  H") || Spielfeld[i][j + 1].equals("  F") || Spielfeld[i][j + 1].equals("!F!")) {
-                                Hasenbewegung_Horizontal = 2;
-                            } else {
-                                Spielfeld[i][j + 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                            }
+                            Spielfeld[i][j + 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
                         }
                     }
                     if (Hasenbewegung_Horizontal == 1) {
                         if (j == 0) {
                             Hasenbewegung_Horizontal = 2;
+                        } else if (Spielfeld[i][j - 1].equals("  H") || Spielfeld[i][j - 1].equals("  F") || Spielfeld[i][j - 1].equals("!F!")) {
+                            Hasenbewegung_Horizontal = 2;
                         } else {
-                            if (Spielfeld[i][j - 1].equals("  H") || Spielfeld[i][j - 1].equals("  F") || Spielfeld[i][j - 1].equals("!F!")) {
-                                Hasenbewegung_Horizontal = 2;
-                            } else {
-                                Spielfeld[i][j - 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                            }
+                            Spielfeld[i][j - 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
                         }
                     }
                     if (Hasenbewegung_Horizontal == 2) {
@@ -189,71 +181,69 @@ public class HasileinTheOriginal {
                             Spielfeld[i][j] = "  .";
                             Speicher_hat_gefressen[i - 1][j - 1] = "j";
                         }
-                    } else {
-                        if (i == 0 && j != 0 && j != 24) {
-                            if (Spielfeld[i + 1][j].equals("  H")) {
-                                Spielfeld[i + 1][j] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i + 1][j] = "j";
-                            }
-                            if (Spielfeld[i + 1][j + 1].equals("  H")) {
-                                Spielfeld[i + 1][j + 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i + 1][j + 1] = "j";
-                            }
-                            if (Spielfeld[i + 1][j - 1].equals("  H")) {
-                                Spielfeld[i + 1][j - 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i + 1][j - 1] = "j";
-                            }
-                        } else if (i == 24 && j != 0 && j != 24) {
-                            if (Spielfeld[i - 1][j].equals("  H")) {
-                                Spielfeld[i - 1][j] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i - 1][j] = "j";
-                            }
-                            if (Spielfeld[i - 1][j + 1].equals("  H")) {
-                                Spielfeld[i - 1][j + 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i - 1][j + 1] = "j";
-                            }
-                            if (Spielfeld[i - 1][j - 1].equals("  H")) {
-                                Spielfeld[i - 1][j - 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i - 1][j - 1] = "j";
-                            }
-                        } else if (j == 0 && i != 0 && i != 24) {
-                            if (Spielfeld[i][j + 1].equals("  H")) {
-                                Spielfeld[i][j + 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i][j + 1] = "j";
-                            }
-                            if (Spielfeld[i + 1][j + 1].equals("  H")) {
-                                Spielfeld[i + 1][j + 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i][j + 1] = "j";
-                            }
-                            if (Spielfeld[i - 1][j + 1].equals("  H")) {
-                                Spielfeld[i - 1][j + 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i - 1][j + 1] = "j";
-                            }
-                        } else if (j == 24 && i != 0 && i != 24) {
-                            if (Spielfeld[i][j - 1].equals("  H")) {
-                                Spielfeld[i][j - 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i][j - 1] = "j";
-                            }
-                            if (Spielfeld[i + 1][j - 1].equals("  H")) {
-                                Spielfeld[i + 1][j - 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i + 1][j - 1] = "j";
-                            }
-                            if (Spielfeld[i - 1][j - 1].equals("  H")) {
-                                Spielfeld[i - 1][j - 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                                Speicher_hat_gefressen[i - 1][j - 1] = "j";
-                            }
+                    } else if (i == 0 && j != 0 && j != 24) {
+                        if (Spielfeld[i + 1][j].equals("  H")) {
+                            Spielfeld[i + 1][j] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i + 1][j] = "j";
+                        }
+                        if (Spielfeld[i + 1][j + 1].equals("  H")) {
+                            Spielfeld[i + 1][j + 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i + 1][j + 1] = "j";
+                        }
+                        if (Spielfeld[i + 1][j - 1].equals("  H")) {
+                            Spielfeld[i + 1][j - 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i + 1][j - 1] = "j";
+                        }
+                    } else if (i == 24 && j != 0 && j != 24) {
+                        if (Spielfeld[i - 1][j].equals("  H")) {
+                            Spielfeld[i - 1][j] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i - 1][j] = "j";
+                        }
+                        if (Spielfeld[i - 1][j + 1].equals("  H")) {
+                            Spielfeld[i - 1][j + 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i - 1][j + 1] = "j";
+                        }
+                        if (Spielfeld[i - 1][j - 1].equals("  H")) {
+                            Spielfeld[i - 1][j - 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i - 1][j - 1] = "j";
+                        }
+                    } else if (j == 0 && i != 0 && i != 24) {
+                        if (Spielfeld[i][j + 1].equals("  H")) {
+                            Spielfeld[i][j + 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i][j + 1] = "j";
+                        }
+                        if (Spielfeld[i + 1][j + 1].equals("  H")) {
+                            Spielfeld[i + 1][j + 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i][j + 1] = "j";
+                        }
+                        if (Spielfeld[i - 1][j + 1].equals("  H")) {
+                            Spielfeld[i - 1][j + 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i - 1][j + 1] = "j";
+                        }
+                    } else if (j == 24 && i != 0 && i != 24) {
+                        if (Spielfeld[i][j - 1].equals("  H")) {
+                            Spielfeld[i][j - 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i][j - 1] = "j";
+                        }
+                        if (Spielfeld[i + 1][j - 1].equals("  H")) {
+                            Spielfeld[i + 1][j - 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i + 1][j - 1] = "j";
+                        }
+                        if (Spielfeld[i - 1][j - 1].equals("  H")) {
+                            Spielfeld[i - 1][j - 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
+                            Speicher_hat_gefressen[i - 1][j - 1] = "j";
                         }
                     }
                 }
@@ -275,13 +265,11 @@ public class HasileinTheOriginal {
                     if (Fuchsbewegung_Horizontal == 0) {
                         if (j == 24) {
                             Fuchsbewegung_Horizontal = 2;
+                        } else if (Spielfeld[i][j + 1].equals("  F") || Spielfeld[i][j + 1].equals("!F!")) {
+                            Fuchsbewegung_Horizontal = 2;
                         } else {
-                            if (Spielfeld[i][j + 1].equals("  F") || Spielfeld[i][j + 1].equals("!F!")) {
-                                Fuchsbewegung_Horizontal = 2;
-                            } else {
-                                Spielfeld[i][j + 1] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                            }
+                            Spielfeld[i][j + 1] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
                         }
                     }
 
@@ -319,25 +307,21 @@ public class HasileinTheOriginal {
                     if (Fuchsbewegung_Vertikal == 0) {
                         if (i == 24) {
                             Fuchsbewegung_Vertikal = 1;
+                        } else if (Spielfeld[i + 1][j].equals("  F") || Spielfeld[i + 1][j].equals("!F!")) {
+                            Fuchsbewegung_Vertikal = 2;
                         } else {
-                            if (Spielfeld[i + 1][j].equals("  F") || Spielfeld[i + 1][j].equals("!F!")) {
-                                Fuchsbewegung_Vertikal = 2;
-                            } else {
-                                Spielfeld[i + 1][j] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                            }
+                            Spielfeld[i + 1][j] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
                         }
                     }
                     if (Fuchsbewegung_Vertikal == 1) {
                         if (i == 0) {
                             Fuchsbewegung_Vertikal = 2;
+                        } else if (Spielfeld[i - 1][j].equals("  F") || Speicher[i - 1][j].equals("!F!")) {
+                            Fuchsbewegung_Vertikal = 2;
                         } else {
-                            if (Spielfeld[i - 1][j].equals("  F") || Speicher[i - 1][j].equals("!F!")) {
-                                Fuchsbewegung_Vertikal = 2;
-                            } else {
-                                Spielfeld[i - 1][j] = Speicher[i][j];
-                                Spielfeld[i][j] = "  .";
-                            }
+                            Spielfeld[i - 1][j] = Speicher[i][j];
+                            Spielfeld[i][j] = "  .";
                         }
                     }
                     if (Fuchsbewegung_Vertikal == 2) {
@@ -455,12 +439,16 @@ public class HasileinTheOriginal {
             for (int j = 0; j < Speicher.length; j++) {
                 if (i != 0 && i != 24) {
                     if (Speicher[i][j] == "  H" && Speicher[i + 1][j] == "  H") {
-                        Spielfeld[i][j + 1] = "  H";
-                        Spielfeld[i + 1][j + 1] = "  H";
+                        if (Speicher[i][j + 1] != "  F" && Speicher[i + 1][j + 1] != "!F!" && j != 24) {
+                            Spielfeld[i][j + 1] = "  H";
+                            Spielfeld[i + 1][j + 1] = "  H";
+                        }
                     }
                     if (Speicher[i][j] == "  H" && Speicher[i - 1][j] == "  H") {
-                        Spielfeld[i][j + 1] = "  H";
-                        Spielfeld[i - 1][j + 1] = "  H";
+                        if (Speicher[i][j + 1] != "  F" && Speicher[i - 1][j + 1] != "!F!" && j != 24) {
+                            Spielfeld[i][j + 1] = "  H";
+                            Spielfeld[i - 1][j + 1] = "  H";
+                        }
                     }
                 }
             }
