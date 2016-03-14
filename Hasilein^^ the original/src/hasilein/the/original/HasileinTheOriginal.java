@@ -521,25 +521,27 @@ public class HasileinTheOriginal {
     }
 
     public static void Hasenvermehrung() {
-        String[][] Speicher = new String[25][25];
-        for (int i = 0; i < Speicher.length; i++) {
-            for (int j = 0; j < Speicher.length; j++) {
-                Speicher[i][j] = Spielfeld[i][j];
+        if (Hasenanzahl <= 25) {
+            String[][] Speicher = new String[25][25];
+            for (int i = 0; i < Speicher.length; i++) {
+                for (int j = 0; j < Speicher.length; j++) {
+                    Speicher[i][j] = Spielfeld[i][j];
+                }
             }
-        }
-        for (int i = 0; i < Speicher.length; i++) {
-            for (int j = 0; j < Speicher.length; j++) {
-                if (i != 0 && i != 24) {
-                    if (Speicher[i][j] == "  H" && Speicher[i + 1][j] == "  H" && j != 24) {
-                        if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i + 1][j + 1] != "  F" && Spielfeld[i][j + 1] != "!F!" && Spielfeld[i + 1][j + 1] != "!F!" && j != 24) {
-                            Spielfeld[i][j + 1] = "  H";
-                            Spielfeld[i + 1][j + 1] = "  H";
+            for (int i = 0; i < Speicher.length; i++) {
+                for (int j = 0; j < Speicher.length; j++) {
+                    if (i != 0 && i != 24) {
+                        if (Speicher[i][j] == "  H" && Speicher[i + 1][j] == "  H" && j != 24) {
+                            if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i + 1][j + 1] != "  F" && Spielfeld[i][j + 1] != "!F!" && Spielfeld[i + 1][j + 1] != "!F!" && j != 24) {
+                                Spielfeld[i][j + 1] = "  H";
+                                Spielfeld[i + 1][j + 1] = "  H";
+                            }
                         }
-                    }
-                    if (Speicher[i][j] == "  H" && Speicher[i - 1][j] == "  H" && j != 24) {
-                        if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i - 1][j + 1] != "  F" && Spielfeld[i][j + 1] != "!F!" && Spielfeld[i - 1][j + 1] != "!F!" && j != 24) {
-                            Spielfeld[i][j + 1] = "  H";
-                            Spielfeld[i - 1][j + 1] = "  H";
+                        if (Speicher[i][j] == "  H" && Speicher[i - 1][j] == "  H" && j != 24) {
+                            if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i - 1][j + 1] != "  F" && Spielfeld[i][j + 1] != "!F!" && Spielfeld[i - 1][j + 1] != "!F!" && j != 24) {
+                                Spielfeld[i][j + 1] = "  H";
+                                Spielfeld[i - 1][j + 1] = "  H";
+                            }
                         }
                     }
                 }
