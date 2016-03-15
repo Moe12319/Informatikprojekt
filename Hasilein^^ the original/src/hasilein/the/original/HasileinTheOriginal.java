@@ -64,7 +64,7 @@ public class HasileinTheOriginal {
             }
         }
 
-        int Hasenanzahl = 25;
+        int Hasenanzahl = 20;
 
         for (int h = 0; h < Hasenanzahl; h++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  H";
@@ -106,7 +106,8 @@ public class HasileinTheOriginal {
                     int Hasenbewegung_Vertikal = (int) (Math.random() * 3);
                     if (Hasenbewegung_Vertikal == 0) {
                         if (i == 24) {
-                            Hasenbewegung_Vertikal = 1;
+                            Spielfeld[0][j].equals("  H");
+                            Spielfeld[i][j].equals("  .");
                         } else {
                             if (Spielfeld[i + 1][j].equals("  H") || Spielfeld[i + 1][j].equals("  F") || Spielfeld[i + 1][j].equals("!F!")) {
                                 Hasenbewegung_Vertikal = 2;
@@ -118,7 +119,8 @@ public class HasileinTheOriginal {
                     }
                     if (Hasenbewegung_Vertikal == 1) {
                         if (i == 0) {
-                            Hasenbewegung_Vertikal = 2;
+                            Spielfeld[24][j].equals("  H");
+                            Spielfeld[i][j].equals("  .");
                         } else {
                             if (Spielfeld[i - 1][j].equals("  H") || Spielfeld[i - 1][j].equals("  F") || Spielfeld[i - 1][j].equals("!F!")) {
                                 Hasenbewegung_Vertikal = 2;
@@ -149,7 +151,8 @@ public class HasileinTheOriginal {
                     int Hasenbewegung_Horizontal = (int) (Math.random() * 3);
                     if (Hasenbewegung_Horizontal == 0) {
                         if (j == 24) {
-                            Hasenbewegung_Horizontal = 2;
+                            Spielfeld[i][0].equals("  H");
+                            Spielfeld[i][j].equals("  .");
                         } else {
                             if (Spielfeld[i][j + 1].equals("  H") || Spielfeld[i][j + 1].equals("  F") || Spielfeld[i][j + 1].equals("!F!")) {
                                 Hasenbewegung_Horizontal = 2;
@@ -161,7 +164,8 @@ public class HasileinTheOriginal {
                     }
                     if (Hasenbewegung_Horizontal == 1) {
                         if (j == 0) {
-                            Hasenbewegung_Horizontal = 2;
+                            Spielfeld[i][24].equals("  H");
+                            Spielfeld[i][j].equals("  .");
                         } else {
                             if (Spielfeld[i][j - 1].equals("  H") || Spielfeld[i][j - 1].equals("  F") || Spielfeld[i][j - 1].equals("!F!")) {
                                 Hasenbewegung_Horizontal = 2;
@@ -329,7 +333,9 @@ public class HasileinTheOriginal {
                     int Fuchsbewegung_Horizontal = (int) (Math.random() * 3);
                     if (Fuchsbewegung_Horizontal == 0) {
                         if (j == 24) {
-                            Fuchsbewegung_Horizontal = 2;
+                            Spielfeld[i][0].equals("  F");
+                            Spielfeld[i][j].equals("  .");
+
                         } else {
                             if (Spielfeld[i][j + 1].equals("  F") || Spielfeld[i][j + 1].equals("!F!")) {
                                 Fuchsbewegung_Horizontal = 2;
@@ -346,7 +352,8 @@ public class HasileinTheOriginal {
 
                     if (Fuchsbewegung_Horizontal == 1) {
                         if (j == 0) {
-                            Fuchsbewegung_Horizontal = 2;
+                            Spielfeld[i][24].equals("  F");
+                            Spielfeld[i][j].equals("  .");
                         } else {
                             if (Spielfeld[i][j - 1].equals("  F") || Spielfeld[i][j - 1].equals("!F!")) {
                                 Fuchsbewegung_Horizontal = 2;
@@ -382,7 +389,8 @@ public class HasileinTheOriginal {
                     int Fuchsbewegung_Vertikal = (int) (Math.random() * 3);
                     if (Fuchsbewegung_Vertikal == 0) {
                         if (i == 24) {
-                            Fuchsbewegung_Vertikal = 1;
+                             Spielfeld[0][j].equals("  F");
+                            Spielfeld[i][j].equals("  .");
                         } else {
                             if (Spielfeld[i + 1][j].equals("  F") || Spielfeld[i + 1][j].equals("!F!")) {
                                 Fuchsbewegung_Vertikal = 2;
@@ -398,7 +406,8 @@ public class HasileinTheOriginal {
                     }
                     if (Fuchsbewegung_Vertikal == 1) {
                         if (i == 0) {
-                            Fuchsbewegung_Vertikal = 2;
+                             Spielfeld[24][j].equals("  F");
+                            Spielfeld[i][j].equals("  .");
                         } else {
                             if (Spielfeld[i - 1][j].equals("  F") || Speicher[i - 1][j].equals("!F!")) {
                                 Fuchsbewegung_Vertikal = 2;
