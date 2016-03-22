@@ -40,7 +40,7 @@ public class HasileinTheOriginal {
         if (Hunger == 5) {
             for (int i = 0; i < Spielfeld.length; i++) {
                 for (int j = 0; j < Spielfeld.length; j++) {
-                    if (Spielfeld[i][j] == "  F" && Hungerspeicher[i][j] == "h") {
+                    if (Spielfeld[i][j].equals("  F") && Hungerspeicher[i][j].equals("h")) {
                         Spielfeld[i][j] = "  .";
                     }
                 }
@@ -64,7 +64,7 @@ public class HasileinTheOriginal {
             }
         }
 
-        int Hasenanzahl = 20;
+        int Hasenanzahl = 25;
 
         for (int h = 0; h < Hasenanzahl; h++) {
             Spielfeld[(int) (Math.random() * 25)][(int) (Math.random() * 25)] = "  H";
@@ -105,9 +105,9 @@ public class HasileinTheOriginal {
                 if (Speicher[i][j].equals("  H")) {
                     int Hasenbewegung_Vertikal = (int) (Math.random() * 3);
                     if (Hasenbewegung_Vertikal == 0) {
-                        if (i == 24) {
-                            Spielfeld[0][j].equals("  H");
-                            Spielfeld[i][j].equals("  .");
+                        if (i == 24 && !Spielfeld[0][j].equals("  F") && !Spielfeld[0][j].equals("!F!")) {
+                            Spielfeld[0][j] = ("  H");
+                            Spielfeld[i][j] = ("  .");
                         } else {
                             if (Spielfeld[i + 1][j].equals("  H") || Spielfeld[i + 1][j].equals("  F") || Spielfeld[i + 1][j].equals("!F!")) {
                                 Hasenbewegung_Vertikal = 2;
@@ -118,9 +118,9 @@ public class HasileinTheOriginal {
                         }
                     }
                     if (Hasenbewegung_Vertikal == 1) {
-                        if (i == 0) {
-                            Spielfeld[24][j].equals("  H");
-                            Spielfeld[i][j].equals("  .");
+                        if (i == 0 && !Spielfeld[24][j].equals("  F") && !Spielfeld[24][j].equals("!F!")) {
+                            Spielfeld[24][j] = ("  H");
+                            Spielfeld[i][j] = ("  .");
                         } else {
                             if (Spielfeld[i - 1][j].equals("  H") || Spielfeld[i - 1][j].equals("  F") || Spielfeld[i - 1][j].equals("!F!")) {
                                 Hasenbewegung_Vertikal = 2;
@@ -150,9 +150,9 @@ public class HasileinTheOriginal {
                 if (Speicher[i][j].equals("  H")) {
                     int Hasenbewegung_Horizontal = (int) (Math.random() * 3);
                     if (Hasenbewegung_Horizontal == 0) {
-                        if (j == 24) {
-                            Spielfeld[i][0].equals("  H");
-                            Spielfeld[i][j].equals("  .");
+                        if (j == 24 && !Spielfeld[i][0].equals("  F") && !Spielfeld[i][0].equals("!F!")) {
+                            Spielfeld[i][0] = ("  H");
+                            Spielfeld[i][j] = ("  .");
                         } else {
                             if (Spielfeld[i][j + 1].equals("  H") || Spielfeld[i][j + 1].equals("  F") || Spielfeld[i][j + 1].equals("!F!")) {
                                 Hasenbewegung_Horizontal = 2;
@@ -163,9 +163,9 @@ public class HasileinTheOriginal {
                         }
                     }
                     if (Hasenbewegung_Horizontal == 1) {
-                        if (j == 0) {
-                            Spielfeld[i][24].equals("  H");
-                            Spielfeld[i][j].equals("  .");
+                        if (j == 0 && !Spielfeld[i][24].equals("  F") && !Spielfeld[i][24].equals("!F!")) {
+                            Spielfeld[i][24] = ("  H");
+                            Spielfeld[i][j] = ("  .");
                         } else {
                             if (Spielfeld[i][j - 1].equals("  H") || Spielfeld[i][j - 1].equals("  F") || Spielfeld[i][j - 1].equals("!F!")) {
                                 Hasenbewegung_Horizontal = 2;
@@ -342,7 +342,7 @@ public class HasileinTheOriginal {
                             } else {
                                 Spielfeld[i][j + 1] = Speicher[i][j];
                                 Spielfeld[i][j] = "  .";
-                                if (Hungerspeicher[i][j] == "s") {
+                                if (Hungerspeicher[i][j].equals("s")) {
                                     Hungerspeicher[i][j + 1] = "s";
                                     Hungerspeicher[i][j] = "h";
                                 }
@@ -352,15 +352,15 @@ public class HasileinTheOriginal {
 
                     if (Fuchsbewegung_Horizontal == 1) {
                         if (j == 0) {
-                            Spielfeld[i][24].equals("  F");
-                            Spielfeld[i][j].equals("  .");
+                            Spielfeld[i][24] = ("  F");
+                            Spielfeld[i][j] = ("  .");
                         } else {
                             if (Spielfeld[i][j - 1].equals("  F") || Spielfeld[i][j - 1].equals("!F!")) {
                                 Fuchsbewegung_Horizontal = 2;
                             } else {
                                 Spielfeld[i][j - 1] = Speicher[i][j];
                                 Spielfeld[i][j] = "  .";
-                                if (Hungerspeicher[i][j] == "s") {
+                                if (Hungerspeicher[i][j].equals("s")) {
                                     Hungerspeicher[i][j - 1] = "s";
                                     Hungerspeicher[i][j] = "h";
                                 }
@@ -378,8 +378,8 @@ public class HasileinTheOriginal {
 
     public static void Fuchsbewegung_Vertikal() {
         String[][] Speicher = new String[25][25];
-        for (int i = 0; i < Speicher.length; i++) {
-            for (int j = 0; j < Speicher.length; j++) {
+        for (int j = 0; j < Speicher.length; j++) {
+            for (int i = 0; i < Speicher.length; i++) {
                 Speicher[i][j] = Spielfeld[i][j];
             }
         }
@@ -389,8 +389,8 @@ public class HasileinTheOriginal {
                     int Fuchsbewegung_Vertikal = (int) (Math.random() * 3);
                     if (Fuchsbewegung_Vertikal == 0) {
                         if (i == 24) {
-                             Spielfeld[0][j].equals("  F");
-                            Spielfeld[i][j].equals("  .");
+                            Spielfeld[0][j] = ("  F");
+                            Spielfeld[i][j] = ("  .");
                         } else {
                             if (Spielfeld[i + 1][j].equals("  F") || Spielfeld[i + 1][j].equals("!F!")) {
                                 Fuchsbewegung_Vertikal = 2;
@@ -406,15 +406,15 @@ public class HasileinTheOriginal {
                     }
                     if (Fuchsbewegung_Vertikal == 1) {
                         if (i == 0) {
-                             Spielfeld[24][j].equals("  F");
-                            Spielfeld[i][j].equals("  .");
+                            Spielfeld[24][j] = ("  F");
+                            Spielfeld[i][j] = ("  .");
                         } else {
                             if (Spielfeld[i - 1][j].equals("  F") || Speicher[i - 1][j].equals("!F!")) {
                                 Fuchsbewegung_Vertikal = 2;
                             } else {
                                 Spielfeld[i - 1][j] = Speicher[i][j];
                                 Spielfeld[i][j] = "  .";
-                                if (Hungerspeicher[i][j] == "s") {
+                                if (Hungerspeicher[i][j].equals("s")) {
                                     Hungerspeicher[i - 1][j] = "s";
                                     Hungerspeicher[i][j] = "h";
                                 }
@@ -448,36 +448,68 @@ public class HasileinTheOriginal {
                                 + "mit doppeltem buchstaben sprintest du!");
                         String Spielerbewegung = sc.next();
                         if (Spielerbewegung.equals("w")) {
-                            Spielfeld[i - 1][j] = Speicher[i][j];
-                            Spielfeld[i][j] = "  .";
+                            if (Spielfeld[0][j].equals("!F!")) {
+                                System.out.println("Du bist dabei aus dem Spielfeld zu laufen!Das ist keine gute Idee");
+                            } else {
+                                Spielfeld[i - 1][j] = Speicher[i][j];
+                                Spielfeld[i][j] = "  .";
+                            }
                         }
                         if (Spielerbewegung.equals("a")) {
-                            Spielfeld[i][j - 1] = Speicher[i][j];
-                            Spielfeld[i][j] = "  .";
+                            if (Spielfeld[i][0].equals("!F!")) {
+                                System.out.println("Du bist dabei aus dem Spielfeld zu laufen!Das ist keine gute Idee");
+                            } else {
+                                Spielfeld[i][j - 1] = Speicher[i][j];
+                                Spielfeld[i][j] = "  .";
+                            }
                         }
                         if (Spielerbewegung.equals("s")) {
-                            Spielfeld[i + 1][j] = Speicher[i][j];
-                            Spielfeld[i][j] = "  .";
+                            if (Spielfeld[24][j].equals("!F!")) {
+                                System.out.println("Du bist dabei aus dem Spielfeld zu laufen!Das ist keine gute Idee");
+                            } else {
+                                Spielfeld[i + 1][j] = Speicher[i][j];
+                                Spielfeld[i][j] = "  .";
+                            }
                         }
                         if (Spielerbewegung.equals("d")) {
-                            Spielfeld[i][j + 1] = Speicher[i][j];
-                            Spielfeld[i][j] = "  .";
+                            if (Spielfeld[i][24].equals("!F!")) {
+                                System.out.println("Du bist dabei aus dem Spielfeld zu laufen!Das ist keine gute Idee");
+                            } else {
+                                Spielfeld[i][j + 1] = Speicher[i][j];
+                                Spielfeld[i][j] = "  .";
+                            }
                         }
                         if (Spielerbewegung.equals("ww")) {
+                            if(i<5){
+                                System.out.println("Du bist dabei aus dem Spielfeld zu laufen!Das ist keine gute Idee");
+                            }else{
                             Spielfeld[i - 5][j] = Speicher[i][j];
                             Spielfeld[i][j] = "  .";
+                            }
                         }
                         if (Spielerbewegung.equals("aa")) {
+                            if(j<5){
+                                System.out.println("Du bist dabei aus dem Spielfeld zu laufen!Das ist keine gute Idee");
+                            }else{
                             Spielfeld[i][j - 5] = Speicher[i][j];
                             Spielfeld[i][j] = "  .";
+                            }
                         }
                         if (Spielerbewegung.equals("ss")) {
+                            if(i>19){
+                                System.out.println("Du bist dabei aus dem Spielfeld zu laufen!Das ist keine gute Idee");
+                            }else{
                             Spielfeld[i + 5][j] = Speicher[i][j];
                             Spielfeld[i][j] = "  .";
+                            }
                         }
                         if (Spielerbewegung.equals("dd")) {
+                            if(j>19){
+                                System.out.println("Du bist dabei aus dem Spielfeld zu laufen!Das ist keine gute Idee");
+                            }else{
                             Spielfeld[i][j + 5] = Speicher[i][j];
                             Spielfeld[i][j] = "  .";
+                            }
                         }
                         if (Spielerbewegung.equals("warten")) {
                             Deine_Runde = false;
@@ -539,13 +571,13 @@ public class HasileinTheOriginal {
         for (int i = 0; i < Speicher.length; i++) {
             for (int j = 0; j < Speicher.length; j++) {
                 if (i != 0 && i != 24) {
-                    if (Speicher[i][j] == "  H" && Speicher[i + 1][j] == "  H" && j != 24) {
-                        if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i + 1][j + 1] != "  F" && Spielfeld[i][j + 1] != "!F!" && Spielfeld[i + 1][j + 1] != "!F!" && j != 24) {
+                    if (Speicher[i][j].equals("  H") && Speicher[i + 1][j].equals("  H") && j != 24) {
+                        if (!Spielfeld[i][j + 1].equals("  F") && !Spielfeld[i + 1][j + 1].equals("  F") && !Spielfeld[i][j + 1].equals("!F!") && !Spielfeld[i + 1][j + 1].equals("!F!") && j != 24) {
                             Spielfeld[i][j + 1] = "  H";
                             Spielfeld[i + 1][j + 1] = "  H";
                         }
                     }
-                    if (Speicher[i][j] == "  H" && Speicher[i - 1][j] == "  H" && j != 24) {
+                    if (Speicher[i][j].equals("  H") && Speicher[i - 1][j].equals("  H") && j != 24) {
                         if (Spielfeld[i][j + 1] != "  F" && Spielfeld[i - 1][j + 1] != "  F" && Spielfeld[i][j + 1] != "!F!" && Spielfeld[i - 1][j + 1] != "!F!" && j != 24) {
                             Spielfeld[i][j + 1] = "  H";
                             Spielfeld[i - 1][j + 1] = "  H";
